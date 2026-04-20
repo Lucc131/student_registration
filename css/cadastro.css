@@ -246,6 +246,19 @@ button:active {
     transform: translateY(0);
 }
 
+.acao-btn {
+    min-height: 40px;
+    padding: 0 16px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #526d82 0%, #27374d 100%);
+    box-shadow: 0 10px 18px rgba(39, 55, 77, 0.16);
+    font-size: 0.9rem;
+}
+
+.acao-btn:hover {
+    box-shadow: 0 14px 22px rgba(39, 55, 77, 0.24);
+}
+
 .list-section {
     padding: 28px;
     overflow: hidden;
@@ -314,6 +327,72 @@ button:active {
     margin-top: 28px;
 }
 
+.delete-confirmation-aside {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(39, 55, 77, 0.36);
+    backdrop-filter: blur(8px);
+}
+
+.delete-confirmation-aside.active {
+    display: flex;
+}
+
+.delete-confirmation-card {
+    width: min(460px, 100%);
+    padding: 28px;
+    border: 1px solid rgba(82, 109, 130, 0.16);
+    border-radius: var(--radius-lg);
+    background: rgba(244, 248, 251, 0.96);
+    box-shadow: 0 22px 46px rgba(39, 55, 77, 0.18);
+}
+
+.delete-confirmation-tag {
+    margin-bottom: 10px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #526d82;
+}
+
+.delete-confirmation-title {
+    margin-bottom: 12px;
+}
+
+.delete-confirmation-text {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.delete-confirmation-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.cancel-delete-button,
+.confirm-delete-button {
+    min-height: 48px;
+    padding: 0 18px;
+}
+
+.cancel-delete-button {
+    background: #9db2bf;
+    color: #27374d;
+    box-shadow: none;
+}
+
+.confirm-delete-button {
+    background: linear-gradient(135deg, #526d82 0%, #27374d 100%);
+}
+
 .site-footer-content {
     display: flex;
     justify-content: space-between;
@@ -357,5 +436,9 @@ button:active {
 
     #tabela-alunos {
         min-width: 760px;
+    }
+
+    .delete-confirmation-card {
+        padding: 22px;
     }
 }

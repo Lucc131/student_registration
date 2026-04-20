@@ -1,5 +1,6 @@
 const chaveAlunos = "alunos";
 const chaveExclusoesPorDia = "exclusoesPorDia";
+let indiceAlunoParaExcluir = null;
 
 function obterAlunos() {
     return JSON.parse(localStorage.getItem(chaveAlunos)) || [];
@@ -42,7 +43,7 @@ function carregarAlunos() {
                 <td>${aluno.email}</td>
                 <td>${aluno.curso}</td>
                 <td>
-                    <button class="acao-btn" onclick="excluirAluno(${index})">
+                    <button class="acao-btn" onclick="abrirAvisoExclusao(${index})">
                         Excluir
                     </button>
                 </td>
@@ -84,6 +85,36 @@ function cadastrarAluno() {
     carregarAlunos();
 }
 
+function abrirAvisoExclusao(index) {
+    indiceAlunoParaExcluir = index;
+
+    const avisoExclusao = document.getElementById("avisoExclusao");
+
+    if (avisoExclusao) {
+        avisoExclusao.classList.add("active");
+        avisoExclusao.setAttribute("aria-hidden", "false");
+    }
+}
+
+function fecharAvisoExclusao() {
+    indiceAlunoParaExcluir = null;
+
+    const avisoExclusao = document.getElementById("avisoExclusao");
+
+    if (avisoExclusao) {
+        avisoExclusao.classList.remove("active");
+        avisoExclusao.setAttribute("aria-hidden", "true");
+    }
+}
+
+function confirmarExclusao() {
+    if (indiceAlunoParaExcluir === null) {
+        return;
+    }
+
+    excluirAluno(indiceAlunoParaExcluir);
+}
+
 function excluirAluno(index) {
     const alunos = obterAlunos();
 
@@ -91,6 +122,7 @@ function excluirAluno(index) {
 
     salvarAlunos(alunos);
     registrarExclusaoHoje();
+    fecharAvisoExclusao();
     carregarAlunos();
 }
 

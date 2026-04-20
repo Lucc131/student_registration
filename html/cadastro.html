@@ -111,6 +111,18 @@
         </section>
     </main>
 
+    <aside class="delete-confirmation-aside" id="avisoExclusao" aria-hidden="true">
+        <div class="delete-confirmation-card">
+            <p class="delete-confirmation-tag">Confirmacao</p>
+            <h2 class="delete-confirmation-title">Tem certeza?</h2>
+            <p class="delete-confirmation-text">Alunos excluidos nao podem mais serem recuperados.</p>
+            <div class="delete-confirmation-actions">
+                <button class="cancel-delete-button" type="button" onclick="fecharAvisoExclusao()">Cancelar</button>
+                <button class="confirm-delete-button" type="button" onclick="confirmarExclusao()">Excluir aluno</button>
+            </div>
+        </div>
+    </aside>
+
     <footer class="site-footer">
         <div class="container site-footer-content">
             <p class="footer-text">Painel front-end para cadastro academico com dados locais.</p>
