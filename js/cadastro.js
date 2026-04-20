@@ -1,35 +1,3 @@
-function obterChaveAlunos() {
-    return "alunos";
-}
-
-function obterChaveExclusoesPorDia() {
-    return "exclusoesPorDia";
-}
-
-function obterIndiceAlunoParaExcluir() {
-    if (typeof window.indiceAlunoParaExcluir === "number") {
-        return window.indiceAlunoParaExcluir;
-    }
-
-    return null;
-}
-
-function definirIndiceAlunoParaExcluir(index) {
-    window.indiceAlunoParaExcluir = index;
-}
-
-function limparIndiceAlunoParaExcluir() {
-    window.indiceAlunoParaExcluir = null;
-}
-
-function obterAlunos() {
-    return JSON.parse(localStorage.getItem(obterChaveAlunos())) || [];
-}
-
-function salvarAlunos(alunos) {
-    localStorage.setItem(obterChaveAlunos(), JSON.stringify(alunos));
-}
-
 function carregarAlunos() {
     configurarPesquisa();
 
@@ -138,17 +106,6 @@ function abrirAvisoExclusao(index) {
     }
 }
 
-function fecharAvisoExclusao() {
-    const avisoExclusao = document.getElementById("avisoExclusao");
-
-    limparIndiceAlunoParaExcluir();
-
-    if (avisoExclusao) {
-        avisoExclusao.classList.remove("active");
-        avisoExclusao.setAttribute("aria-hidden", "true");
-    }
-}
-
 function confirmarExclusao() {
     const index = obterIndiceAlunoParaExcluir();
 
@@ -169,49 +126,15 @@ function excluirAluno(index) {
     carregarAlunos();
 }
 
-function calcularIdade(dataNascimento) {
-    const hoje = new Date();
-    const nascimento = new Date(dataNascimento);
-    const diff = hoje - nascimento;
+function fecharAvisoExclusao() {
+    const avisoExclusao = document.getElementById("avisoExclusao");
 
-    return new Date(diff).getUTCFullYear() - 1970;
-}
+    limparIndiceAlunoParaExcluir();
 
-function obterDataAtualFormatada() {
-    const hoje = new Date();
-    const ano = hoje.getFullYear();
-    const mes = String(hoje.getMonth() + 1).padStart(2, "0");
-    const dia = String(hoje.getDate()).padStart(2, "0");
-
-    return `${ano}-${mes}-${dia}`;
-}
-
-function contarCadastrosHoje(alunos, dataHoje) {
-    return alunos.filter((aluno) => aluno.dataCadastro === dataHoje).length;
-}
-
-function obterExclusoesPorDia() {
-    return JSON.parse(localStorage.getItem(obterChaveExclusoesPorDia())) || {};
-}
-
-function salvarExclusoesPorDia(exclusoesPorDia) {
-    localStorage.setItem(obterChaveExclusoesPorDia(), JSON.stringify(exclusoesPorDia));
-}
-
-function registrarExclusaoHoje() {
-    const dataHoje = obterDataAtualFormatada();
-    const exclusoesPorDia = obterExclusoesPorDia();
-    const totalAtual = exclusoesPorDia[dataHoje] || 0;
-
-    exclusoesPorDia[dataHoje] = totalAtual + 1;
-    salvarExclusoesPorDia(exclusoesPorDia);
-}
-
-function obterExclusoesHoje() {
-    const dataHoje = obterDataAtualFormatada();
-    const exclusoesPorDia = obterExclusoesPorDia();
-
-    return exclusoesPorDia[dataHoje] || 0;
+    if (avisoExclusao) {
+        avisoExclusao.classList.remove("active");
+        avisoExclusao.setAttribute("aria-hidden", "true");
+    }
 }
 
 function filtrarAlunos(alunos) {
@@ -242,4 +165,81 @@ function filtrarAlunos(alunos) {
 
             return String(campos[filtroSelecionado] || "").toLowerCase().includes(termoBusca);
         });
+}
+
+function obterAlunos() {
+    return JSON.parse(localStorage.getItem(obterChaveAlunos())) || [];
+}
+
+function salvarAlunos(alunos) {
+    localStorage.setItem(obterChaveAlunos(), JSON.stringify(alunos));
+}
+
+function obterExclusoesPorDia() {
+    return JSON.parse(localStorage.getItem(obterChaveExclusoesPorDia())) || {};
+}
+
+function salvarExclusoesPorDia(exclusoesPorDia) {
+    localStorage.setItem(obterChaveExclusoesPorDia(), JSON.stringify(exclusoesPorDia));
+}
+
+function registrarExclusaoHoje() {
+    const dataHoje = obterDataAtualFormatada();
+    const exclusoesPorDia = obterExclusoesPorDia();
+    const totalAtual = exclusoesPorDia[dataHoje] || 0;
+
+    exclusoesPorDia[dataHoje] = totalAtual + 1;
+    salvarExclusoesPorDia(exclusoesPorDia);
+}
+
+function obterExclusoesHoje() {
+    const dataHoje = obterDataAtualFormatada();
+    const exclusoesPorDia = obterExclusoesPorDia();
+
+    return exclusoesPorDia[dataHoje] || 0;
+}
+
+function contarCadastrosHoje(alunos, dataHoje) {
+    return alunos.filter((aluno) => aluno.dataCadastro === dataHoje).length;
+}
+
+function calcularIdade(dataNascimento) {
+    const hoje = new Date();
+    const nascimento = new Date(dataNascimento);
+    const diff = hoje - nascimento;
+
+    return new Date(diff).getUTCFullYear() - 1970;
+}
+
+function obterDataAtualFormatada() {
+    const hoje = new Date();
+    const ano = hoje.getFullYear();
+    const mes = String(hoje.getMonth() + 1).padStart(2, "0");
+    const dia = String(hoje.getDate()).padStart(2, "0");
+
+    return `${ano}-${mes}-${dia}`;
+}
+
+function obterIndiceAlunoParaExcluir() {
+    if (typeof window.indiceAlunoParaExcluir === "number") {
+        return window.indiceAlunoParaExcluir;
+    }
+
+    return null;
+}
+
+function definirIndiceAlunoParaExcluir(index) {
+    window.indiceAlunoParaExcluir = index;
+}
+
+function limparIndiceAlunoParaExcluir() {
+    window.indiceAlunoParaExcluir = null;
+}
+
+function obterChaveAlunos() {
+    return "alunos";
+}
+
+function obterChaveExclusoesPorDia() {
+    return "exclusoesPorDia";
 }
