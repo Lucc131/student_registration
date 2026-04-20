@@ -20,109 +20,21 @@ body {
 h1,
 h2 {
     color: #27374d;
-    letter-spacing: -0.03em;
 }
 
 h1 {
     font-size: clamp(2rem, 4vw, 2.8rem);
 }
 
-h2 {
-    font-size: 1.35rem;
-}
-
-.site-header,
-.dashboard-summary,
-.form-section,
-.list-section,
-.site-footer,
-.delete-confirmation-card {
-    background: #f4f8fb;
-    border: 1px solid #b8c8d4;
-    border-radius: 20px;
-    box-shadow: 0 12px 30px rgba(39, 55, 77, 0.12);
-}
-
-.site-header,
-.site-footer {
-    margin-bottom: 28px;
-}
-
-.site-header-content,
-.site-footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    padding: 28px 32px;
-}
-
-.main-layout {
-    display: grid;
-    gap: 28px;
-}
-
-.brand-block {
-    max-width: 720px;
-}
-
-.eyebrow-text,
-.section-tag,
-.summary-label,
-.delete-confirmation-tag {
-    margin-bottom: 10px;
-    color: #526d82;
-    font-size: .78rem;
-    font-weight: 700;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-}
-
-.hero-text,
-.section-text,
-.summary-description,
-.footer-text,
-.delete-confirmation-text,
-.form-group label,
-.search-field-group label,
-#tabela-alunos td {
-    color: #526d82;
-}
-
-.hero-text,
-.section-text,
-.summary-description,
-.footer-text,
-.delete-confirmation-text {
-    line-height: 1.7;
-}
-
-.hero-text {
-    margin-top: 14px;
-    max-width: 620px;
-}
-
-.site-navigation,
-.delete-confirmation-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.site-navigation-link,
-button {
-    border-radius: 999px;
-    font: inherit;
-    font-weight: 700;
-}
 
 .site-navigation-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 44px;
-    padding: 0 18px;
+    min-height: 42px;
+    padding: 0 16px;
     border: 1px solid #b8c8d4;
+    border-radius: 8px;
     background: #fff;
     color: #27374d;
     text-decoration: none;
@@ -137,13 +49,13 @@ button {
 
 .dashboard-summary {
     grid-template-columns: repeat(2, 1fr);
-    padding: 22px;
+    padding: 20px;
 }
 
 .summary-card {
-    padding: 22px;
+    padding: 18px;
     border: 1px solid #b8c8d4;
-    border-radius: 16px;
+    border-radius: 12px;
     background: #dde6ed;
 }
 
@@ -160,10 +72,10 @@ button {
 .form-section,
 .list-section,
 .delete-confirmation-card {
-    padding: 28px;
+    padding: 24px;
 }
 
-#form-aluno {
+.form-aluno {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
@@ -175,31 +87,18 @@ button {
     gap: 8px;
 }
 
-.form-group label,
-.search-field-group label {
-    font-size: .95rem;
-    font-weight: 600;
-}
-
 .form-group input,
 .search-field-group input,
 .search-field-group select {
     width: 100%;
-    min-height: 52px;
-    padding: 0 16px;
+    min-height: 48px;
+    padding: 0 14px;
     border: 1px solid #b8c8d4;
-    border-radius: 12px;
+    border-radius: 8px;
     background: #fff;
     color: #27374d;
     font: inherit;
     outline: none;
-}
-
-.form-group input:focus,
-.search-field-group input:focus,
-.search-field-group select:focus {
-    border-color: #526d82;
-    box-shadow: 0 0 0 3px rgba(82, 109, 130, 0.14);
 }
 
 .search-controls {
@@ -209,40 +108,41 @@ button {
 }
 
 button {
-    border: 0;
+    border: 1px solid #526d82;
+    border-radius: 8px;
     background: #526d82;
     color: #fff;
     cursor: pointer;
 }
 
-#form-aluno button {
+.form-aluno button {
     grid-column: 1 / -1;
-    min-height: 52px;
+    min-height: 48px;
 }
 
 .acao-btn,
 .cancel-delete-button,
 .confirm-delete-button {
-    min-height: 42px;
-    padding: 0 16px;
+    min-height: 40px;
+    padding: 0 14px;
 }
 
 .cancel-delete-button {
     background: #9db2bf;
+    border-color: #9db2bf;
     color: #27374d;
 }
 
 .table-shell {
     overflow-x: auto;
     border: 1px solid #b8c8d4;
-    border-radius: 16px;
+    border-radius: 12px;
 }
 
-#tabela-alunos {
+.tabela-alunos {
     width: 100%;
     min-width: 760px;
     border-collapse: collapse;
-    background: #fff;
 }
 
 .table-caption {
@@ -252,24 +152,24 @@ button {
     overflow: hidden;
 }
 
-#tabela-alunos thead {
+.tabela-alunos thead {
     background: #d5e0e7;
 }
 
-#tabela-alunos th,
-#tabela-alunos td,
+.tabela-alunos th,
+.tabela-alunos td,
 .empty-search-message td {
-    padding: 16px 18px;
+    padding: 14px 16px;
     text-align: left;
     border-bottom: 1px solid #e8eef7;
 }
 
-#tabela-alunos th {
+.tabela-alunos th {
     color: #27374d;
     font-size: .92rem;
 }
 
-#tabela-alunos tbody tr:last-child td,
+.tabela-alunos tbody tr:last-child td,
 .empty-search-message td {
     border-bottom: 0;
 }
@@ -327,7 +227,7 @@ button {
     .site-header-content,
     .site-footer-content,
     .delete-confirmation-card {
-        padding: 22px;
+        padding: 20px;
     }
 
     .table-shell {
@@ -335,33 +235,32 @@ button {
         border: 0;
     }
 
-    #tabela-alunos,
-    #tabela-alunos tbody,
-    #tabela-alunos tr,
-    #tabela-alunos td {
+    .tabela-alunos,
+    .tabela-alunos tbody,
+    .tabela-alunos tr,
+    .tabela-alunos td {
         display: block;
         width: 100%;
         min-width: 100%;
     }
 
-    #tabela-alunos {
+    .tabela-alunos {
         background: transparent;
     }
 
-    #tabela-alunos thead {
+    .tabela-alunos thead {
         display: none;
     }
 
-    #tabela-alunos tr {
+    .tabela-alunos tr {
         margin-bottom: 16px;
         padding: 14px;
         border: 1px solid #b8c8d4;
-        border-radius: 16px;
+        border-radius: 12px;
         background: #fff;
-        box-shadow: 0 12px 30px rgba(39, 55, 77, 0.12);
     }
 
-    #tabela-alunos td {
+    .tabela-alunos td {
         display: flex;
         justify-content: space-between;
         gap: 12px;
@@ -369,13 +268,13 @@ button {
         text-align: right;
     }
 
-    #tabela-alunos td::before {
+    .tabela-alunos td::before {
         content: attr(data-label);
         color: #27374d;
         font-weight: 700;
     }
 
-    #tabela-alunos td:last-child {
+    .tabela-alunos td:last-child {
         padding-bottom: 0;
     }
 
