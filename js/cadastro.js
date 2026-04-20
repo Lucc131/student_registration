@@ -37,12 +37,12 @@ function carregarAlunos() {
 
         const linha = `
             <tr>
-                <td>${aluno.matricula}</td>
-                <td>${aluno.nome}</td>
-                <td>${idade}</td>
-                <td>${aluno.email}</td>
-                <td>${aluno.curso}</td>
-                <td>
+                <td data-label="Matricula">${aluno.matricula}</td>
+                <td data-label="Nome">${aluno.nome}</td>
+                <td data-label="Idade">${idade}</td>
+                <td data-label="E-mail">${aluno.email}</td>
+                <td data-label="Curso">${aluno.curso}</td>
+                <td data-label="Acoes">
                     <button class="acao-btn" onclick="abrirAvisoExclusao(${index})">
                         Excluir
                     </button>

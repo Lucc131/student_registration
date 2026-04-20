@@ -300,11 +300,80 @@ button {
         grid-template-columns: 1fr;
     }
 
+    .site-navigation {
+        width: 100%;
+    }
+
+    .site-navigation-link {
+        width: 100%;
+    }
+
     .form-section,
     .list-section,
     .site-header-content,
     .site-footer-content,
     .delete-confirmation-card {
         padding: 22px;
+    }
+
+    .table-shell {
+        overflow: visible;
+        border: 0;
+    }
+
+    #tabela-alunos {
+        min-width: 100%;
+        background: transparent;
+    }
+
+    #tabela-alunos thead {
+        display: none;
+    }
+
+    #tabela-alunos,
+    #tabela-alunos tbody,
+    #tabela-alunos tr,
+    #tabela-alunos td {
+        display: block;
+        width: 100%;
+    }
+
+    #tabela-alunos tr {
+        margin-bottom: 16px;
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: #fff;
+        box-shadow: var(--shadow);
+    }
+
+    #tabela-alunos td {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid #e8eef7;
+        text-align: right;
+    }
+
+    #tabela-alunos td::before {
+        content: attr(data-label);
+        color: var(--text);
+        font-weight: 700;
+        text-align: left;
+    }
+
+    #tabela-alunos td:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    #tabela-alunos td:last-child::before {
+        align-self: center;
+    }
+
+    .acao-btn {
+        min-width: 110px;
+        margin-left: auto;
     }
 }
