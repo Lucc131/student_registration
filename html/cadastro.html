@@ -90,6 +90,24 @@
                 <p class="section-text">Visualize os registros em formato tabelado e acompanhe as informacoes salvas.</p>
             </header>
 
+            <div class="search-controls">
+                <div class="search-field-group">
+                    <label for="campoPesquisa">Buscar aluno</label>
+                    <input type="search" id="campoPesquisa" placeholder="Digite nome, matricula, email ou curso">
+                </div>
+
+                <div class="search-field-group">
+                    <label for="filtroPesquisa">Filtrar por</label>
+                    <select id="filtroPesquisa">
+                        <option value="todos">Todos os campos</option>
+                        <option value="nome">Nome</option>
+                        <option value="matricula">Matricula</option>
+                        <option value="email">E-mail</option>
+                        <option value="curso">Curso</option>
+                    </select>
+                </div>
+            </div>
+
             <article class="table-shell">
                 <table id="tabela-alunos">
                     <caption class="table-caption">Lista de alunos cadastrados no navegador</caption>

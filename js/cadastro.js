@@ -17,6 +17,7 @@ function carregarAlunos() {
     const dataAtualizacao = document.getElementById("data-atualizacao");
     const alunos = obterAlunos();
     const hoje = obterDataAtualFormatada();
+    const alunosFiltrados = filtrarAlunos(alunos);
 
     lista.innerHTML = "";
 
@@ -32,7 +33,16 @@ function carregarAlunos() {
         dataAtualizacao.textContent = new Date().toLocaleDateString("pt-BR");
     }
 
-    alunos.forEach((aluno, index) => {
+    if (alunosFiltrados.length === 0) {
+        lista.innerHTML = `
+            <tr class="empty-search-message">
+                <td colspan="6">Nenhum aluno encontrado com esse filtro.</td>
+            </tr>
+        `;
+        return;
+    }
+
+    alunosFiltrados.forEach(({ aluno, index }) => {
         const idade = calcularIdade(aluno.dataNascimento);
 
         const linha = `
@@ -172,3 +182,46 @@ function obterExclusoesHoje() {
 
     return exclusoesPorDia[dataHoje] || 0;
 }
+
+function filtrarAlunos(alunos) {
+    const campoPesquisa = document.getElementById("campoPesquisa");
+    const filtroPesquisa = document.getElementById("filtroPesquisa");
+    const termoBusca = campoPesquisa ? campoPesquisa.value.trim().toLowerCase() : "";
+    const filtroSelecionado = filtroPesquisa ? filtroPesquisa.value : "todos";
+
+    return alunos
+        .map((aluno, index) => ({ aluno, index }))
+        .filter(({ aluno }) => {
+            if (!termoBusca) {
+                return true;
+            }
+
+            const campos = {
+                nome: aluno.nome,
+                matricula: aluno.matricula,
+                email: aluno.email,
+                curso: aluno.curso
+            };
+
+            if (filtroSelecionado === "todos") {
+                return Object.values(campos).some((valor) =>
+                    String(valor).toLowerCase().includes(termoBusca)
+                );
+            }
+
+            return String(campos[filtroSelecionado] || "").toLowerCase().includes(termoBusca);
+        });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const campoPesquisa = document.getElementById("campoPesquisa");
+    const filtroPesquisa = document.getElementById("filtroPesquisa");
+
+    if (campoPesquisa) {
+        campoPesquisa.addEventListener("input", carregarAlunos);
+    }
+
+    if (filtroPesquisa) {
+        filtroPesquisa.addEventListener("change", carregarAlunos);
+    }
+});

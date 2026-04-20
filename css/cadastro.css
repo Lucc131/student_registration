@@ -190,6 +190,44 @@ h2 {
     box-shadow: 0 0 0 3px rgba(82, 109, 130, 0.14);
 }
 
+.search-controls {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.search-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.search-field-group label {
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.search-field-group input,
+.search-field-group select {
+    width: 100%;
+    min-height: 52px;
+    padding: 0 16px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #fff;
+    color: var(--text);
+    font: inherit;
+    outline: none;
+}
+
+.search-field-group input:focus,
+.search-field-group select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(82, 109, 130, 0.14);
+}
+
 button {
     border: 0;
     border-radius: 999px;
@@ -261,6 +299,12 @@ button {
     border-bottom: 0;
 }
 
+.empty-search-message td {
+    padding: 24px 18px;
+    text-align: center;
+    color: var(--muted);
+}
+
 .delete-confirmation-aside {
     position: fixed;
     inset: 0;
@@ -296,7 +340,8 @@ button {
     }
 
     .dashboard-summary,
-    #form-aluno {
+    #form-aluno,
+    .search-controls {
         grid-template-columns: 1fr;
     }
 
