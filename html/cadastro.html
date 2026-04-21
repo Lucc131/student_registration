@@ -12,93 +12,91 @@
 
 <body onload="carregarAlunos()">
 
-    <header class="site-header">
-        <div class="container site-header-content">
-            <div class="brand-block">
-                <p class="eyebrow-text">Sistema academico local</p>
+    <header class="cabecalho">
+        <div class="limite conteudo-cabecalho">
+            <div class="bloco-marca">
+                <p class="texto-topo">Sistema academico local</p>
                 <h1>Cadastro de Alunos</h1>
-                <p class="hero-text">
+                <p class="texto-apresentacao">
                     Estrutura semantica, interface moderna e gerenciamento rapido com armazenamento local no navegador.
                 </p>
             </div>
 
-            <nav class="site-navigation" aria-label="Navegacao principal">
-                <a class="site-navigation-link" href="#cadastro-aluno">Formulario</a>
-                <a class="site-navigation-link" href="#gerenciamento-alunos">Gerenciamento</a>
+            <nav class="navegacao" aria-label="Navegacao principal">
+                <a class="link-navegacao" href="#secao-cadastro">Formulario</a>
+                <a class="link-navegacao" href="#secao-gerenciamento">Gerenciamento</a>
             </nav>
         </div>
     </header>
 
-    <main class="container main-layout">
-        <aside class="dashboard-summary" aria-label="Resumo do sistema">
-            <div class="summary-card">
-                <p class="summary-label">Hoje</p>
-                <strong class="summary-number" id="contador-alunos">0</strong>
-                <span class="summary-description">alunos cadastrados hoje</span>
+    <main class="limite layout-principal">
+        <aside class="painel-resumo" aria-label="Resumo do sistema">
+            <div class="cartao-resumo">
+                <p class="rotulo-resumo">Hoje</p>
+                <strong class="numero-resumo" id="total-cadastros-hoje">0</strong>
+                <span class="texto-resumo">alunos cadastrados hoje</span>
             </div>
 
-            <div class="summary-card">
-                <p class="summary-label">Hoje</p>
-                <strong class="summary-number" id="contador-exclusoes">0</strong>
-                <span class="summary-description">alunos excluidos hoje</span>
+            <div class="cartao-resumo">
+                <p class="rotulo-resumo">Hoje</p>
+                <strong class="numero-resumo" id="total-exclusoes-hoje">0</strong>
+                <span class="texto-resumo">alunos excluidos hoje</span>
             </div>
         </aside>
 
-        <section class="form-section" id="cadastro-aluno" aria-labelledby="titulo-novo-aluno">
-            <header class="section-header">
-                <p class="section-tag">Cadastro</p>
-                <h2 id="titulo-novo-aluno">Novo Aluno</h2>
-                <p class="section-text">Preencha os campos obrigatorios para registrar um novo aluno no sistema.</p>
+        <section class="secao-formulario" id="secao-cadastro" aria-labelledby="titulo-cadastro">
+            <header class="cabecalho-secao">
+                <p class="tipo-secao">Cadastro</p>
+                <h2 id="titulo-cadastro">Novo Aluno</h2>
+                <p class="texto-secao">Preencha os campos obrigatorios para registrar um novo aluno no sistema.</p>
             </header>
 
-            <form id="form-aluno" class="form-aluno">
-
-                <div class="form-group">
+            <form id="form-cadastro" class="grade-formulario">
+                <div class="grupo-campo">
                     <label for="matricula">Matricula</label>
                     <input type="text" id="matricula" required minlength="4" maxlength="20" placeholder="Ex.: 20240001">
                 </div>
 
-                <div class="form-group">
+                <div class="grupo-campo">
                     <label for="nome">Nome Completo</label>
                     <input type="text" id="nome" required minlength="3" maxlength="120" placeholder="Ex.: Maria Eduarda Santos">
                 </div>
 
-                <div class="form-group">
+                <div class="grupo-campo">
                     <label for="dataNascimento">Data de Nascimento</label>
                     <input type="date" id="dataNascimento" required>
                 </div>
 
-                <div class="form-group">
+                <div class="grupo-campo">
                     <label for="email">E-mail</label>
                     <input type="email" id="email" required minlength="6" maxlength="120" placeholder="Ex.: aluno@email.com">
                 </div>
 
-                <div class="form-group">
+                <div class="grupo-campo">
                     <label for="curso">Curso</label>
                     <input type="text" id="curso" required minlength="2" maxlength="80" placeholder="Ex.: Analise e Desenvolvimento de Sistemas">
                 </div>
 
                 <button type="button" onclick="cadastrarAluno()">Cadastrar</button>
-
             </form>
         </section>
 
-        <section class="list-section" id="gerenciamento-alunos" aria-labelledby="titulo-alunos-cadastrados">
-            <header class="section-header">
-                <p class="section-tag">Gerenciamento</p>
-                <h2 id="titulo-alunos-cadastrados">Alunos Cadastrados</h2>
-                <p class="section-text">Visualize os registros em formato tabelado e acompanhe as informacoes salvas.</p>
+        <section class="secao-lista" id="secao-gerenciamento" aria-labelledby="titulo-gerenciamento">
+            <header class="cabecalho-secao">
+                <p class="tipo-secao">Gerenciamento</p>
+                <h2 id="titulo-gerenciamento">Alunos Cadastrados</h2>
+                <p class="texto-secao">Visualize os registros em formato tabelado e acompanhe as informacoes salvas.</p>
             </header>
 
-            <div class="search-controls">
-                <div class="search-field-group">
-                    <label for="campoPesquisa">Buscar aluno</label>
-                    <input type="search" id="campoPesquisa" placeholder="Digite nome, matricula, email ou curso">
+            <div class="area-pesquisa">
+                <div class="grupo-pesquisa">
+                    <label for="campo-busca">Buscar aluno</label>
+                    <input type="search" id="campo-busca" placeholder="Digite nome, matricula, email ou curso">
                 </div>
 
-                <div class="search-field-group">
-                    <label for="filtroPesquisa">Filtrar por</label>
-                    <select id="filtroPesquisa">
+                <div class="grupo-pesquisa">
+                    <label for="filtro-busca">Filtrar por</label>
+                    <select id="filtro-busca">
                         <option value="todos">Todos os campos</option>
                         <option value="nome">Nome</option>
                         <option value="matricula">Matricula</option>
@@ -108,9 +106,9 @@
                 </div>
             </div>
 
-            <article class="table-shell">
-                <table id="tabela-alunos" class="tabela-alunos">
-                    <caption class="table-caption">Lista de alunos cadastrados no navegador</caption>
+            <article class="caixa-tabela">
+                <table id="tabela-cadastros" class="tabela-cadastros">
+                    <caption class="legenda-tabela">Lista de alunos cadastrados no navegador</caption>
                     <thead>
                         <tr>
                             <th>Matricula</th>
@@ -121,30 +119,28 @@
                             <th>Acoes</th>
                         </tr>
                     </thead>
-
-                    <tbody id="lista-alunos"></tbody>
+                    <tbody id="lista-cadastros"></tbody>
                 </table>
             </article>
-
         </section>
     </main>
 
-    <aside class="delete-confirmation-aside" id="avisoExclusao" aria-hidden="true">
-        <div class="delete-confirmation-card">
-            <p class="delete-confirmation-tag">Confirmacao</p>
-            <h2 class="delete-confirmation-title">Tem certeza?</h2>
-            <p class="delete-confirmation-text">Alunos excluidos nao podem mais serem recuperados.</p>
-            <div class="delete-confirmation-actions">
-                <button class="cancel-delete-button" type="button" onclick="fecharAvisoExclusao()">Cancelar</button>
-                <button class="confirm-delete-button" type="button" onclick="confirmarExclusao()">Excluir aluno</button>
+    <aside class="painel-exclusao" id="painel-exclusao" aria-hidden="true">
+        <div class="cartao-exclusao">
+            <p class="tipo-exclusao">Confirmacao</p>
+            <h2 class="titulo-exclusao">Tem certeza?</h2>
+            <p class="texto-exclusao">Alunos excluidos nao podem mais serem recuperados.</p>
+            <div class="acoes-exclusao">
+                <button class="botao-cancelar" type="button" onclick="fecharAvisoExclusao()">Cancelar</button>
+                <button class="botao-excluir" type="button" onclick="confirmarExclusao()">Excluir aluno</button>
             </div>
         </div>
     </aside>
 
-    <footer class="site-footer">
-        <div class="container site-footer-content">
-            <p class="footer-text">Painel front-end para cadastro academico com dados locais.</p>
-            <p class="footer-text">Atualizado em <span id="data-atualizacao"></span></p>
+    <footer class="rodape">
+        <div class="limite conteudo-rodape">
+            <p class="texto-rodape">Painel front-end para cadastro academico com dados locais.</p>
+            <p class="texto-rodape">Atualizado em <span id="data-atual"></span></p>
         </div>
     </footer>
 

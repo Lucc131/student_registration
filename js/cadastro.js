@@ -1,31 +1,31 @@
 function carregarAlunos() {
     configurarPesquisa();
 
-    const lista = document.getElementById("lista-alunos");
-    const contadorAlunos = document.getElementById("contador-alunos");
-    const contadorExclusoes = document.getElementById("contador-exclusoes");
-    const dataAtualizacao = document.getElementById("data-atualizacao");
+    const listaCadastros = document.getElementById("lista-cadastros");
+    const totalCadastrosHoje = document.getElementById("total-cadastros-hoje");
+    const totalExclusoesHoje = document.getElementById("total-exclusoes-hoje");
+    const dataAtual = document.getElementById("data-atual");
     const alunos = obterAlunos();
     const hoje = obterDataAtualFormatada();
     const alunosFiltrados = filtrarAlunos(alunos);
 
-    lista.innerHTML = "";
+    listaCadastros.innerHTML = "";
 
-    if (contadorAlunos) {
-        contadorAlunos.textContent = contarCadastrosHoje(alunos, hoje);
+    if (totalCadastrosHoje) {
+        totalCadastrosHoje.textContent = contarCadastrosHoje(alunos, hoje);
     }
 
-    if (contadorExclusoes) {
-        contadorExclusoes.textContent = obterExclusoesHoje();
+    if (totalExclusoesHoje) {
+        totalExclusoesHoje.textContent = obterExclusoesHoje();
     }
 
-    if (dataAtualizacao) {
-        dataAtualizacao.textContent = new Date().toLocaleDateString("pt-BR");
+    if (dataAtual) {
+        dataAtual.textContent = new Date().toLocaleDateString("pt-BR");
     }
 
     if (alunosFiltrados.length === 0) {
-        lista.innerHTML = `
-            <tr class="empty-search-message">
+        listaCadastros.innerHTML = `
+            <tr class="linha-vazia">
                 <td colspan="6">Nenhum aluno encontrado com esse filtro.</td>
             </tr>
         `;
@@ -35,7 +35,7 @@ function carregarAlunos() {
     alunosFiltrados.forEach(({ aluno, index }) => {
         const idade = calcularIdade(aluno.dataNascimento);
 
-        lista.innerHTML += `
+        listaCadastros.innerHTML += `
             <tr>
                 <td data-label="Matricula">${aluno.matricula}</td>
                 <td data-label="Nome">${aluno.nome}</td>
@@ -43,7 +43,7 @@ function carregarAlunos() {
                 <td data-label="E-mail">${aluno.email}</td>
                 <td data-label="Curso">${aluno.curso}</td>
                 <td data-label="Acoes">
-                    <button class="acao-btn" onclick="abrirAvisoExclusao(${index})">
+                    <button class="botao-acao" onclick="abrirAvisoExclusao(${index})">
                         Excluir
                     </button>
                 </td>
@@ -53,17 +53,17 @@ function carregarAlunos() {
 }
 
 function configurarPesquisa() {
-    const campoPesquisa = document.getElementById("campoPesquisa");
-    const filtroPesquisa = document.getElementById("filtroPesquisa");
+    const campoBusca = document.getElementById("campo-busca");
+    const filtroBusca = document.getElementById("filtro-busca");
 
-    if (campoPesquisa && !campoPesquisa.dataset.listenerAtivo) {
-        campoPesquisa.addEventListener("input", carregarAlunos);
-        campoPesquisa.dataset.listenerAtivo = "true";
+    if (campoBusca && !campoBusca.dataset.listenerAtivo) {
+        campoBusca.addEventListener("input", carregarAlunos);
+        campoBusca.dataset.listenerAtivo = "true";
     }
 
-    if (filtroPesquisa && !filtroPesquisa.dataset.listenerAtivo) {
-        filtroPesquisa.addEventListener("change", carregarAlunos);
-        filtroPesquisa.dataset.listenerAtivo = "true";
+    if (filtroBusca && !filtroBusca.dataset.listenerAtivo) {
+        filtroBusca.addEventListener("change", carregarAlunos);
+        filtroBusca.dataset.listenerAtivo = "true";
     }
 }
 
@@ -91,18 +91,18 @@ function cadastrarAluno() {
     });
 
     salvarAlunos(alunos);
-    document.getElementById("form-aluno").reset();
+    document.getElementById("form-cadastro").reset();
     carregarAlunos();
 }
 
 function abrirAvisoExclusao(index) {
-    const avisoExclusao = document.getElementById("avisoExclusao");
+    const painelExclusao = document.getElementById("painel-exclusao");
 
     definirIndiceAlunoParaExcluir(index);
 
-    if (avisoExclusao) {
-        avisoExclusao.classList.add("active");
-        avisoExclusao.setAttribute("aria-hidden", "false");
+    if (painelExclusao) {
+        painelExclusao.classList.add("ativo");
+        painelExclusao.setAttribute("aria-hidden", "false");
     }
 }
 
@@ -127,21 +127,21 @@ function excluirAluno(index) {
 }
 
 function fecharAvisoExclusao() {
-    const avisoExclusao = document.getElementById("avisoExclusao");
+    const painelExclusao = document.getElementById("painel-exclusao");
 
     limparIndiceAlunoParaExcluir();
 
-    if (avisoExclusao) {
-        avisoExclusao.classList.remove("active");
-        avisoExclusao.setAttribute("aria-hidden", "true");
+    if (painelExclusao) {
+        painelExclusao.classList.remove("ativo");
+        painelExclusao.setAttribute("aria-hidden", "true");
     }
 }
 
 function filtrarAlunos(alunos) {
-    const campoPesquisa = document.getElementById("campoPesquisa");
-    const filtroPesquisa = document.getElementById("filtroPesquisa");
-    const termoBusca = campoPesquisa ? campoPesquisa.value.trim().toLowerCase() : "";
-    const filtroSelecionado = filtroPesquisa ? filtroPesquisa.value : "todos";
+    const campoBusca = document.getElementById("campo-busca");
+    const filtroBusca = document.getElementById("filtro-busca");
+    const termoBusca = campoBusca ? campoBusca.value.trim().toLowerCase() : "";
+    const filtroSelecionado = filtroBusca ? filtroBusca.value : "todos";
 
     return alunos
         .map((aluno, index) => ({ aluno, index }))
@@ -176,11 +176,11 @@ function salvarAlunos(alunos) {
 }
 
 function obterExclusoesPorDia() {
-    return JSON.parse(localStorage.getItem(obterChaveExclusoesPorDia())) || {};
+    return JSON.parse(localStorage.getItem(obterChaveExclusoes())) || {};
 }
 
 function salvarExclusoesPorDia(exclusoesPorDia) {
-    localStorage.setItem(obterChaveExclusoesPorDia(), JSON.stringify(exclusoesPorDia));
+    localStorage.setItem(obterChaveExclusoes(), JSON.stringify(exclusoesPorDia));
 }
 
 function registrarExclusaoHoje() {
@@ -240,6 +240,6 @@ function obterChaveAlunos() {
     return "alunos";
 }
 
-function obterChaveExclusoesPorDia() {
+function obterChaveExclusoes() {
     return "exclusoesPorDia";
 }
